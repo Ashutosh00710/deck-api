@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	log.Println("starting server")
 	engine := gin.Default()
 	server.Register(engine)
 	log.Fatal(engine.Run())
