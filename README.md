@@ -31,7 +31,8 @@ The project is structured as follows:
 │ │ ├── server.go
 │ │ └── server_test.go
 │ └── service
-│   └── deck.go
+│   ├── deck.go
+│   └── deck_test.go
 ├── go.mod
 └── README.md
 ```
