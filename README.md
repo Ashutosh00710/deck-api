@@ -6,7 +6,7 @@
     - [Dependencies](#dependencies)
     - [Logic Separation](#logic-separation)
     - [Build and Run](#build-and-run)
-  - [Principles for dealing with development of this repository](#principles-for-dealing-with-development-of-this-repository)
+  - [⭐ **Principles for dealing with development of this repository**](#principles-for-dealing-with-development-of-this-repository)
 
 ## Project Overview
 
@@ -89,7 +89,7 @@ graph TD
 
 ---
 
-## Principles for dealing with development of this repository
+## Principles for dealing with development of this server
 
 1. Initialization of major dependencies should be performed in the main package. This ensures that the server is properly configured before it starts processing requests.
 2. API routing should be carefully defined, including the endpoints that can be accessed within the server layer. Different group handlers should be registered to ensure that requests are properly handled and routed to the appropriate services.
