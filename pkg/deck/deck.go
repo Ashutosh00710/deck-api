@@ -24,10 +24,8 @@ type Deck struct {
 	Shuffle bool   `json:"shuffle"`
 }
 
-// cache to avoid creation of card process
 var allCards []Card
 
-// NewDeck creates a new deck with the given parameters.
 func NewDeck(shuffle bool, cardCodes []string) *Deck {
 	if len(allCards) == 0 {
 		allCards = generateCards()
@@ -50,13 +48,11 @@ func NewDeck(shuffle bool, cardCodes []string) *Deck {
 	}
 }
 
-// shuffleCards shuffles the given cards slice.
 func shuffleCards(cards []Card) {
 	rand.Seed(time.Now().UnixNano())
 	rand.Shuffle(len(cards), func(i, j int) { cards[i], cards[j] = cards[j], cards[i] })
 }
 
-// generateCards generates all possible cards with their ranks, suits, and codes.
 func generateCards() []Card {
 	var cards []Card
 	ranks := []Rank{Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King}
@@ -70,7 +66,6 @@ func generateCards() []Card {
 	return cards
 }
 
-// buildCustomDeck builds a custom deck using the given card codes and the provided cards slice.
 func buildCustomDeck(cardCodes []string, cards []Card) []Card {
 	var filteredCards []Card
 	cardCodesMap := map[string]bool{}
@@ -85,13 +80,9 @@ func buildCustomDeck(cardCodes []string, cards []Card) []Card {
 	return filteredCards
 }
 
-// Rank represents the rank of a playing card.
 type Rank string
-
-// Suit represents the suit of a playing card.
 type Suit string
 
-// Constants for each possible rank and suit.
 const (
 	Ace   Rank = "A"
 	Two   Rank = "2"
