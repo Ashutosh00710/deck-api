@@ -18,7 +18,7 @@ The project is structured as follows:
 .
 ├── cmd
 │ └── deck
-│ └── main.go
+│   └── main.go
 ├── pkg
 │ ├── deck
 │ │ ├── deck.go
