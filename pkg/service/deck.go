@@ -41,3 +41,15 @@ func (s *DeckService) GetNewDeck(context *gin.Context) {
 		"remaining": len(dk.Cards),
 	})
 }
+
+func (s *DeckService) OpenDeck(context *gin.Context) {
+	deckID := context.Param("id")
+	if _, ok := s.decks[deckID]; !ok {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"message": fmt.Sprintf("No deck found with id %s", deckID),
+		})
+		return
+	}
+	dk := s.decks[deckID]
+	context.JSON(http.StatusOK, dk.Open())
+}
