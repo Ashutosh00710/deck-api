@@ -7,7 +7,9 @@ package service
 
 import (
 	"deck-api/pkg/deck"
+	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -52,4 +54,34 @@ func (s *DeckService) OpenDeck(context *gin.Context) {
 	}
 	dk := s.decks[deckID]
 	context.JSON(http.StatusOK, dk.Open())
+}
+
+func (s *DeckService) DrawFromDeck(context *gin.Context) {
+	deckID := context.Param("id")
+	if _, ok := s.decks[deckID]; !ok {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"message": fmt.Sprintf("No deck found with id %s", deckID),
+		})
+		return
+	}
+	dk := s.decks[deckID]
+	var cards []deck.Card
+	var cardErr error
+	if countStr := context.Query("count"); countStr != "" {
+		count, err := strconv.Atoi(countStr)
+		if err != nil {
+			context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid count parameter"})
+			return
+		}
+		cards, cardErr = dk.DrawCard(count)
+	} else {
+		cards, cardErr = dk.DrawCard(1)
+	}
+	if cardErr != nil {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"message": cardErr.Error(),
+		})
+		return
+	}
+	context.JSON(http.StatusOK, gin.H{"cards": cards})
 }

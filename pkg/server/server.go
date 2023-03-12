@@ -18,5 +18,6 @@ func registerDeckHandlers(router *gin.RouterGroup) {
 
 	router.GET("", deckService.GetNewDeck)
 	router.GET("/open/:id", deckService.OpenDeck)
+	router.GET("/draw/:id", deckService.DrawFromDeck)
 }
 
