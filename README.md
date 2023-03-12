@@ -6,7 +6,7 @@
     - [Dependencies](#dependencies)
     - [Logic Separation](#logic-separation)
     - [Build and Run](#build-and-run)
-  - [⭐ **Principles for dealing with development of this repository**](#principles-for-dealing-with-development-of-this-repository)
+  - [⭐ **Principles for dealing with development of this server**](#principles-for-dealing-with-development-of-this-server)
 
 ## Project Overview
 
