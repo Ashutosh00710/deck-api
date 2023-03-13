@@ -6,7 +6,7 @@
   - [Package Structure](#package-structure)
   - [Dependencies](#dependencies)
   - [Build and Run](#build-and-run)
-  - [Principles for dealing with development of this repository](#principles-for-dealing-with-development-of-this-repository)
+  - [Principles for dealing with the development of this repository](#principles-for-dealing-with-the-development-of-this-repository)
   - [API Documentation](#api-documentation)
 
 ## Project Overview
