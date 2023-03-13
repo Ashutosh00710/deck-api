@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 
+	_ "deck-api/pkg/responses"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,6 +27,16 @@ func NewDeckService() *DeckService {
 	}
 }
 
+// GetNewDeck
+// Route for getting a new deck
+// @Summary Get a new deck of cards
+// @Description Returns a new deck of cards with optional shuffle and cards parameter
+// @Accept json
+// @Produce json
+// @Param shuffle query bool false "Shuffle the deck"
+// @Param cards query string false "Specific card codes"
+// @Success 200 {object} responses.NewDeckResponse
+// @Router /deck [get]
 func (s *DeckService) GetNewDeck(context *gin.Context) {
 	log.Println("new deck requested")
 	var dk *deck.Deck
@@ -50,6 +61,16 @@ func (s *DeckService) GetNewDeck(context *gin.Context) {
 	})
 }
 
+// OpenDeck
+// Route for opening an existing deck
+// @Summary Open a deck of cards
+// @Description Returns a deck of cards
+// @Accept json
+// @Produce json
+// @Param id path string true "Deck ID"
+// @Success 200 {object} responses.OpenDeckResponse
+// @Failure 400 {object} responses.ErrorResponse
+// @Router /deck/open/{id} [get]
 func (s *DeckService) OpenDeck(context *gin.Context) {
 	log.Println("open deck requested")
 	deckID := context.Param("id")
@@ -65,6 +86,17 @@ func (s *DeckService) OpenDeck(context *gin.Context) {
 	context.JSON(http.StatusOK, dk.Open())
 }
 
+// DrawFromDeck
+// Route for drawing a card (or multiple cards) from an existing deck
+// @Summary Draw cards from the deck
+// @Description Returns a deck of cards drawn
+// @Accept json
+// @Produce json
+// @Param id path string true "Deck ID"
+// @Param count query string false "Number of cards you want to draw from the deck"
+// @Success 200 {object} responses.DrawDeckResponse
+// @Failure 400 {object} responses.ErrorResponse
+// @Router /deck/draw/{id} [get]
 func (s *DeckService) DrawFromDeck(context *gin.Context) {
 	log.Println("draw from deck requested")
 	deckID := context.Param("id")

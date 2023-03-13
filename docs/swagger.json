@@ -1,0 +1,244 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/deck": {
+            "get": {
+                "description": "Returns a new deck of cards with optional shuffle and cards parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a new deck of cards",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "Shuffle the deck",
+                        "name": "shuffle",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Specific card codes",
+                        "name": "cards",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.NewDeckResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/deck/draw/{id}": {
+            "get": {
+                "description": "Returns a deck of cards drawn",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Draw cards from the deck",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Deck ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Number of cards you want to draw from the deck",
+                        "name": "count",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.DrawDeckResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/deck/open/{id}": {
+            "get": {
+                "description": "Returns a deck of cards",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Open a deck of cards",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Deck ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responses.OpenDeckResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/responses.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "deck.Card": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "rank": {
+                    "$ref": "#/definitions/deck.Rank"
+                },
+                "suit": {
+                    "$ref": "#/definitions/deck.Suit"
+                }
+            }
+        },
+        "deck.Rank": {
+            "type": "string",
+            "enum": [
+                "ACE",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "JOKER",
+                "QUEEN",
+                "KING"
+            ],
+            "x-enum-varnames": [
+                "Ace",
+                "Two",
+                "Three",
+                "Four",
+                "Five",
+                "Six",
+                "Seven",
+                "Eight",
+                "Nine",
+                "Ten",
+                "Jack",
+                "Queen",
+                "King"
+            ]
+        },
+        "deck.Suit": {
+            "type": "string",
+            "enum": [
+                "SPADES",
+                "DIAMONDS",
+                "CLUBS",
+                "HEARTS"
+            ],
+            "x-enum-varnames": [
+                "Spades",
+                "Diamonds",
+                "Clubs",
+                "Hearts"
+            ]
+        },
+        "responses.DrawDeckResponse": {
+            "type": "object",
+            "properties": {
+                "cards": {
+                    "description": "List of cards drawn from the deck\nexample: [{ \"rank\": \"ACE\", \"suit\": \"SPADES\", \"code\": \"AS\" }]",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/deck.Card"
+                    }
+                }
+            }
+        },
+        "responses.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "description": "List of cards drawn from the deck\nexample: \"something went wrong\"",
+                    "type": "string"
+                }
+            }
+        },
+        "responses.NewDeckResponse": {
+            "type": "object",
+            "properties": {
+                "deck_id": {
+                    "description": "Deck ID\nexample: 1674b1fa-f1d5-4453-b617-88c84b6df7ea",
+                    "type": "string"
+                },
+                "remaining": {
+                    "description": "Number of cards remaining in the deck\nexample: 52",
+                    "type": "integer"
+                },
+                "shuffled": {
+                    "description": "Whether the deck was shuffled or not\nexample: false",
+                    "type": "boolean"
+                }
+            }
+        },
+        "responses.OpenDeckResponse": {
+            "type": "object",
+            "properties": {
+                "cards": {
+                    "description": "List of cards in the deck\nexample: [{ \"rank\": \"ACE\", \"suit\": \"SPADES\", \"code\": \"AS\" }]",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/deck.Card"
+                    }
+                },
+                "deck_id": {
+                    "description": "Deck ID\nexample: 1674b1fa-f1d5-4453-b617-88c84b6df7ea",
+                    "type": "string"
+                },
+                "remaining": {
+                    "description": "Number of cards remaining in the deck\nexample: 52",
+                    "type": "integer"
+                },
+                "shuffled": {
+                    "description": "Whether the deck was shuffled or not\nexample: false",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
