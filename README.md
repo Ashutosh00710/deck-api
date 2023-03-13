@@ -19,7 +19,7 @@ The project is structured as follows:
 .
 ├── cmd
 │ └── deck
-│ └── main.go
+│   └── main.go
 ├── docs
 │ ├── docs.go
 │ ├── swagger.json
@@ -38,7 +38,7 @@ The project is structured as follows:
 │ │ ├── server.go
 │ │ └── server_test.go
 │ └── service
-│ └── deck.go
+│   └── deck.go
 ├── go.mod
 └── README.md
 ```
