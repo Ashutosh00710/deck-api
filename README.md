@@ -100,7 +100,7 @@ This project depends on the following external libraries:
 
 ---
 
-## Principles for dealing with development of this repository
+## Principles for dealing with the development of this repository
 
 1. Initialization of major dependencies should be performed in the main package. This ensures that the server is properly configured before it starts processing requests.
 2. API routing should be carefully defined, including the endpoints that can be accessed within the server layer. Different group handlers should be registered to ensure that requests are properly handled and routed to the appropriate services.
