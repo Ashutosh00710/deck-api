@@ -110,4 +110,4 @@ This project depends on the following external libraries:
 
 ## API Documentation
 
-The API is documented using Swagger, which provides an interactive interface for exploring the API and its endpoints. The Swagger documentation is accessible at /docs. To view the documentation, navigate to http://localhost:8080/swagger in your web browser. The Swagger interface allows you to view the API specification, test endpoints, and experiment with different request and response payloads.
+The API is documented using Swagger, which provides an interactive interface for exploring the API and its endpoints. The Swagger documentation is accessible at /docs. To view the documentation, navigate to http://localhost:8080/swagger/index.html in your web browser. The Swagger interface allows you to view the API specification, test endpoints, and experiment with different request and response payloads.
