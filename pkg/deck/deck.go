@@ -84,7 +84,7 @@ type Rank string
 type Suit string
 
 const (
-	Ace   Rank = "A"
+	Ace   Rank = "ACE"
 	Two   Rank = "2"
 	Three Rank = "3"
 	Four  Rank = "4"
@@ -94,12 +94,12 @@ const (
 	Eight Rank = "8"
 	Nine  Rank = "9"
 	Ten   Rank = "10"
-	Jack  Rank = "J"
-	Queen Rank = "Q"
-	King  Rank = "K"
+	Jack  Rank = "JOKER"
+	Queen Rank = "QUEEN"
+	King  Rank = "KING"
 
-	Spades   Suit = "Spades"
-	Diamonds Suit = "Diamonds"
-	Clubs    Suit = "Clubs"
-	Hearts   Suit = "Hearts"
+	Spades   Suit = "SPADES"
+	Diamonds Suit = "DIAMONDS"
+	Clubs    Suit = "CLUBS"
+	Hearts   Suit = "HEARTS"
 )
